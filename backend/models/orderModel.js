@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema({
     user: {
-        type: mongoose.Schema.types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User'
     },
@@ -13,7 +13,7 @@ const orderSchema = mongoose.Schema({
             image:{type:String, required:true},
             price:{type:Number, required:true},
             product: {
-                type: mongoose.Schema.types.ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 required: true,
                 ref: 'Product'
             },
@@ -58,7 +58,7 @@ const orderSchema = mongoose.Schema({
         default: false
     },
     paidAt: {
-        type: date
+        type: Date
     },
     isDelivered: {
         type: Boolean,
@@ -66,7 +66,7 @@ const orderSchema = mongoose.Schema({
         default: false
     },
     deliveredAt: {
-        type: date
+        type: Date
     },
     
     
