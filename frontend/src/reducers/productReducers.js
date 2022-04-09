@@ -1,8 +1,11 @@
-import { PRODUCT_LIST_REQUEST,PRODUCT_LIST_SUCCESS,PRODUCT_LIST_FAIL } from "../actions/types"
+import {
+    PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL,
+    PRODUCT_DETAILES_REQUEST,PRODUCT_DETAILES_SUCCESS,PRODUCT_DETAILES_FAIL
+} from "../actions/types"
 
 
 
-export const productListReducer = (state = { products: [],loading: true }, action) => {
+export const productListReducer = (state = { products: [],loading: false }, action) => {
     switch (action.type) {
         case PRODUCT_LIST_REQUEST:
             return { loading: true, products: [] }
@@ -14,6 +17,19 @@ export const productListReducer = (state = { products: [],loading: true }, actio
             return state
         
     }
-    // default
-    //     return  state
+    
+}
+export const productDetailesReducer = (state = { product:{reviews:[],rating:0},loading: false }, action) => {
+    switch (action.type) {
+        case PRODUCT_DETAILES_REQUEST:
+            return {...state, loading: true }
+        case PRODUCT_DETAILES_SUCCESS:
+            return { loading: false, product: action.payload.data }
+        case PRODUCT_DETAILES_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+        
+    }
+    
 }
