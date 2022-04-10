@@ -8,10 +8,9 @@ export const PRODUCT_LIST_FAIL = 'PRODUCT_LIST_FAIL'
 export const PRODUCT_DETAILES_REQUEST = 'PRODUCT_DETAILES_REQUEST'
 export const PRODUCT_DETAILES_SUCCESS = 'PRODUCT_DETAILES_SUCCESS'
 export const PRODUCT_DETAILES_FAIL = 'PRODUCT_DETAILES_FAIL'
-// Cart product types
-export const CART_LIST_REQUEST = 'CART_LIST_REQUEST'
-export const CART_LIST_SUCCESS = 'CART_LIST_SUCCESS'
-export const CART_LIST_FAIL = 'CART_LIST_FAIL'
-// CADD/Remove Product in cart Types
+
+// ADD/Remove Product in cart Types
 export const CART_ADD_ITEM= 'CART_ADD_ITEM'
-export const CART_REMOVE_ITEM= 'CART_REMOVE_ITEM'
+export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM'
+
+
