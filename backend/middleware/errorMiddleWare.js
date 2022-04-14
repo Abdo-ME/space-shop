@@ -1,6 +1,6 @@
 const notFoundPage = (req, res, next) => {
     const error = new Error(`Not Found - ${req.path}`)
-    res.status(404);
+    res.status(404)
     next(error);
 }
 
