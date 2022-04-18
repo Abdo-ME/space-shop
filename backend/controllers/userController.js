@@ -13,12 +13,13 @@ const authUser = asyncHandler( async(req, res) => {
     // const PasswordsMatched=await bcryptjs.compare(password,user.password) 
     // --------
     // Or we can use matchPassword is a method model from  the userShcema 
-    const PasswordsMatched=(user.matchPassword(password))
+    const PasswordsMatched =user? await user.matchPassword(password):false
+    
     if (user && PasswordsMatched ) {
         
             res.json({
                 _id: user._id,
-                nam: user.name,
+                name: user.name,
                 email: user.email,
                 isAdmin: user.isAdmin,
                 token: generateToken(user._id)
@@ -28,6 +29,38 @@ const authUser = asyncHandler( async(req, res) => {
         
         res.status(401);
         throw new Error ('Invalid email or password')
+    }
+  
+})
+
+
+
+//@desc    Register a new user
+//@route    POST /api/users
+//@access    Public
+const registerUser = asyncHandler( async(req, res) => {
+    const {name,email,password} = req.body
+    const userExist = await User.findOne({ email })
+    if (userExist) {
+        res.status(400)
+        throw new Error ('User already exists')
+    }
+    const user = await User.create({
+        name,
+        email,
+        password
+    })
+    if (user) {
+        res.status(201).json({
+            _id: user._id,
+            nam: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            token: generateToken(user._id)
+        })
+    } else {
+        res.status(400)
+        throw new Error('Invalid user data')
     }
   
 })
@@ -53,4 +86,4 @@ const getUserProfile = asyncHandler( async(req, res) => {
 
 
 
-export {authUser,getUserProfile}
+export {authUser,registerUser,getUserProfile}
