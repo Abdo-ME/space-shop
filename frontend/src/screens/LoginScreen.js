@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import { Form, Button, Row, Col } from "react-bootstrap"
+import { Link, useNavigate } from "react-router-dom"
+import { Form, Button, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -30,18 +30,17 @@ const LoginScreen = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(login(email, password)) 
-    console.log(error)
     
   }
 
   return (
-    <>
-    {loading ? <Loader /> : (
+   
+    
     <FormContainer>
-
-          <Form onSubmit={handleSubmit}>
-            {error && <Message variant="danger" >{error} </Message>
-            }
+      <h1>Sign In</h1>
+        {error && <Message variant="danger" >{error} </Message>}
+        {loading && <Loader />}  
+        <Form onSubmit={handleSubmit}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control type='email'
@@ -70,10 +69,10 @@ const LoginScreen = () => {
         </Link>
       </Row>
       </FormContainer>
-      )}
-    </>
+      )
+    
 
-  )
+  
 }
 
 export default LoginScreen
