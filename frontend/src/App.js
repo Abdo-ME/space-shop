@@ -11,9 +11,10 @@ import HomeScreen from './screens/HomeScreen'
 import ProductScreen from './screens/ProductScreen';
 import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './RegisterScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import { useSelector } from 'react-redux';
 import ProtectedRoutes from './components/ProtectedRoutes';
+import Profile from './screens/Profile';
 
 
 const App = () => {
@@ -35,7 +36,9 @@ const App = () => {
               <Route path='cart/:id' element={<CartScreen />} />
               {/* Protected Routes */}
               <Route element={<ProtectedRoutes userInfo={userInfo} />}>
-               <Route path='login' element ={<LoginScreen/>}/>
+                <Route path='login' element={<LoginScreen />} />
+                <Route path='profile' element={<Profile/>} />
+                
               </Route>
             {/* <Route path='login' element ={ <LoginScreen/>}/> */}
             <Route path='register' element ={<RegisterScreen/>}/>
