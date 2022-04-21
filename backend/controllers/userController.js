@@ -69,14 +69,14 @@ const registerUser = asyncHandler( async(req, res) => {
 //@route    GET /api/users/profile
 //@access    Privet
 const getUserProfile = asyncHandler( async(req, res) => {
-   
+
     const user = await User.findById(req.user._id)
     if (user) {
         res.json({
             _id: user._id,
-            nam: user.name,
+            name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            isAdmin: user.isAdmin
         })
     } else {
         res.status(401)
@@ -85,10 +85,9 @@ const getUserProfile = asyncHandler( async(req, res) => {
 })
 
 //@desc     Update user Profile
-//@route    Put /api/users/login
+//@route    Put /api/profile
 //@access    Privet
 const updateUserProfile = asyncHandler( async(req, res) => {
-   
     const user = await User.findById(req.user._id)
     if (user) {
        user.name = req.body.name || user.name

@@ -5,7 +5,13 @@ import {
     USER_LOGOUT,
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
-    USER_REGISTER_FAIL
+    USER_REGISTER_FAIL,
+    USER_DETAILES_REQUEST,
+    USER_DETAILES_SUCCESS,
+    USER_DETAILES_FAIL,
+    USER_UPDATE_PROFILE_REQUEST,
+    USER_UPDATE_PROFILE_SUCCESS,
+    USER_UPDATE_PROFILE_FAIL
 } from '../actions/types.js'
 
 const userInfo = localStorage.getItem('userInfo')
@@ -36,6 +42,37 @@ export const userRegisterReducer = (state = {}, action) => {
         case  USER_REGISTER_SUCCESS:
             return { ...state,loading: false, userInfo: action.payload }
         case USER_REGISTER_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+        
+    }
+    
+}
+export const userDetailsReducer = (state = {}, action) => {
+    switch (action.type) {
+       
+        case  USER_DETAILES_REQUEST:
+            return { ...state,loading: true }
+        case  USER_DETAILES_SUCCESS:
+            return { loading: false, user: action.payload }
+        case USER_DETAILES_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state
+        
+    }
+    
+}
+
+export const userUpdateProfileReducer = (state = {}, action) => {
+    switch (action.type) {
+       
+        case  USER_UPDATE_PROFILE_REQUEST:
+            return { loading: true }
+        case  USER_UPDATE_PROFILE_SUCCESS:
+            return { loading: false,success:true, userInfo: action.payload }
+        case USER_UPDATE_PROFILE_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state

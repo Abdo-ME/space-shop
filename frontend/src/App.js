@@ -14,7 +14,8 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import { useSelector } from 'react-redux';
 import ProtectedRoutes from './components/ProtectedRoutes';
-import Profile from './screens/Profile';
+import ProfileScreen from './screens/ProfileScreen';
+import ShippingScreen from './screens/ShippingScreen';
 
 
 const App = () => {
@@ -37,8 +38,8 @@ const App = () => {
               {/* Protected Routes */}
               <Route element={<ProtectedRoutes userInfo={userInfo} />}>
                 <Route path='login' element={<LoginScreen />} />
-                <Route path='profile' element={<Profile/>} />
-                
+                <Route path='profile' element={<ProfileScreen/>} />
+                <Route path='shipping' element={<ShippingScreen/>} />
               </Route>
             {/* <Route path='login' element ={ <LoginScreen/>}/> */}
             <Route path='register' element ={<RegisterScreen/>}/>
