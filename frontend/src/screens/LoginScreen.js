@@ -17,14 +17,7 @@ const LoginScreen = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // if (location.state?.from) {
-    //   console.log(location.state.from);
-    //   navigate(location.state.from)
-    // }
-    // if (userInfo) { navigate('/') }
     if (userInfo) { navigate(-1) }
-  
-    
   }, [userInfo,navigate])
   
   const handleSubmit = (e) => {
@@ -35,7 +28,6 @@ const LoginScreen = () => {
 
   return (
    
-    
     <FormContainer>
       <h1>Sign In</h1>
         {error && <Message variant="danger" >{error} </Message>}

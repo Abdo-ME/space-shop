@@ -11,12 +11,11 @@ const authUser = asyncHandler( async(req, res) => {
     const user = await User.findOne({ email })
     //We can us decrypted Password directly 
     // const PasswordsMatched=await bcryptjs.compare(password,user.password) 
-    // --------
+    // -------------------------------------------------------------
     // Or we can use matchPassword is a method model from  the userShcema 
     const PasswordsMatched =user? await user.matchPassword(password):false
     
     if (user && PasswordsMatched ) {
-        
             res.json({
                 _id: user._id,
                 name: user.name,
@@ -26,7 +25,6 @@ const authUser = asyncHandler( async(req, res) => {
             })
         
     } else {
-        
         res.status(401);
         throw new Error ('Invalid email or password')
     }
@@ -69,14 +67,14 @@ const registerUser = asyncHandler( async(req, res) => {
 //@route    GET /api/users/profile
 //@access    Privet
 const getUserProfile = asyncHandler( async(req, res) => {
-   
+
     const user = await User.findById(req.user._id)
     if (user) {
         res.json({
             _id: user._id,
-            nam: user.name,
+            name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin,
+            isAdmin: user.isAdmin
         })
     } else {
         res.status(401)
@@ -85,10 +83,9 @@ const getUserProfile = asyncHandler( async(req, res) => {
 })
 
 //@desc     Update user Profile
-//@route    Put /api/users/login
+//@route    Put /api/profile
 //@access    Privet
 const updateUserProfile = asyncHandler( async(req, res) => {
-   
     const user = await User.findById(req.user._id)
     if (user) {
        user.name = req.body.name || user.name
@@ -109,7 +106,6 @@ const updateUserProfile = asyncHandler( async(req, res) => {
         throw new Error('User not found')
     }
 })
-
 
 
 export {authUser,registerUser,getUserProfile,updateUserProfile}
