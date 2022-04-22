@@ -16,6 +16,7 @@ import { useSelector } from 'react-redux';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
                 <Route path='login' element={<LoginScreen />} />
                 <Route path='profile' element={<ProfileScreen/>} />
                 <Route path='shipping' element={<ShippingScreen/>} />
+                <Route path='payment' element={<PaymentScreen/>} />
               </Route>
             <Route path='register' element ={<RegisterScreen/>}/>
         </Route>
