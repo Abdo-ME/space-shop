@@ -53,9 +53,7 @@ export const logout = () =>  (dispatch) => {
 
 // Register Action
     export const register = (name,email,password) => async (dispatch) => {
-      
         try {
-       
             dispatch({ type: USER_REGISTER_REQUEST })
             const config = {
                 headers: {
@@ -91,9 +89,8 @@ export const logout = () =>  (dispatch) => {
 
                // User details Action
 
-               export const getUserDetails = (id) => async (dispatch,getState) => {
+            export const getUserDetails = (id) => async (dispatch,getState) => {
                 try {
-               
                     dispatch({ type: USER_DETAILES_REQUEST })
                     const {token } = getState().userLogin.userInfo
                     const config = {
@@ -107,7 +104,6 @@ export const logout = () =>  (dispatch) => {
                         `api/users/${id}`,
                         config
                     )
-                      
                     dispatch({
                         type: USER_DETAILES_SUCCESS,
                         payload: data
@@ -128,7 +124,6 @@ export const logout = () =>  (dispatch) => {
 
         export const updateUserProfile = (user) => async (dispatch,getState) => {
             try {
-           
                 dispatch({ type: USER_UPDATE_PROFILE_REQUEST })
                 const {token } = getState().userLogin.userInfo
                 const config = {
@@ -143,7 +138,6 @@ export const logout = () =>  (dispatch) => {
                     user,
                     config
                 )
-                  
                 dispatch({
                     type: USER_UPDATE_PROFILE_SUCCESS,
                     payload: data
@@ -159,6 +153,3 @@ export const logout = () =>  (dispatch) => {
             }
             
             }
-
- 
-    

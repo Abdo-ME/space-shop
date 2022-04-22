@@ -11,12 +11,11 @@ const authUser = asyncHandler( async(req, res) => {
     const user = await User.findOne({ email })
     //We can us decrypted Password directly 
     // const PasswordsMatched=await bcryptjs.compare(password,user.password) 
-    // --------
+    // -------------------------------------------------------------
     // Or we can use matchPassword is a method model from  the userShcema 
     const PasswordsMatched =user? await user.matchPassword(password):false
     
     if (user && PasswordsMatched ) {
-        
             res.json({
                 _id: user._id,
                 name: user.name,
@@ -26,7 +25,6 @@ const authUser = asyncHandler( async(req, res) => {
             })
         
     } else {
-        
         res.status(401);
         throw new Error ('Invalid email or password')
     }
@@ -108,7 +106,6 @@ const updateUserProfile = asyncHandler( async(req, res) => {
         throw new Error('User not found')
     }
 })
-
 
 
 export {authUser,registerUser,getUserProfile,updateUserProfile}

@@ -6,11 +6,9 @@ import { useDispatch,useSelector } from "react-redux";
 import {addToCartItem, removeFromCartItem} from '../actions/cartActions'
 import Message from '../components/Message';
   
-
 const CartScreen = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  
   const { cartItems } = useSelector(state => state.cart)
   const userLogin = useSelector(state=>state.userLogin)
   const {userInfo } = userLogin
@@ -21,10 +19,8 @@ const CartScreen = () => {
   }
   const checkoutHandler = () => {
     if (!userInfo) {
-      
       navigate('/login')
     } else {
-      
       navigate('/shipping')
     }
   }

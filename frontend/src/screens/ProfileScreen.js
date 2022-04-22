@@ -57,7 +57,6 @@ const ProfileScreen = () => {
         {success && <Message variant="success" >Your Update is Done </Message>}
         {loading && <Loader />} 
         <Form onSubmit={handleSubmit}>
-           
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
           <Form.Control type='text'
@@ -95,7 +94,6 @@ const ProfileScreen = () => {
         </Button>
         </Form>
       </Col>
-
       <Col md={8}>
           <h2>My Orders</h2>
       </Col>

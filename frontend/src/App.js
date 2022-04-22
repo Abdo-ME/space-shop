@@ -30,7 +30,6 @@ const App = () => {
           <Container>
       <Routes>
             <Route path='/'>
-              
             <Route index element ={<HomeScreen/>}/>
             <Route path='product/:id' element ={<ProductScreen/>}/>
             <Route path='cart' element ={<CartScreen/>}/>
@@ -41,7 +40,6 @@ const App = () => {
                 <Route path='profile' element={<ProfileScreen/>} />
                 <Route path='shipping' element={<ShippingScreen/>} />
               </Route>
-            {/* <Route path='login' element ={ <LoginScreen/>}/> */}
             <Route path='register' element ={<RegisterScreen/>}/>
         </Route>
       </Routes>
