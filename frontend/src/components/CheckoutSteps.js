@@ -27,7 +27,7 @@ return (
         </Nav.Item>
         <Nav.Item>
             {step4 ? (
-                <LinkContainer to='/placeorder'>
+                <LinkContainer to='/place_order'>
                     <Nav.Link>Place Order</Nav.Link>
                 </LinkContainer>
             ):<Nav.Item disabled>Place Order</Nav.Item> }
