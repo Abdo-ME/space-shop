@@ -13,7 +13,8 @@ export const addToCartItem = (product, qty) =>  (dispatch, getState) => {
             const productFound= cartItemsClone.find(p=>p._id===product._id)
             productFound.qty =  +qty
         } else {
-            productClone.qty= +qty
+            productClone.qty = +qty
+            productClone.product = product._id
             cartItemsClone.push(productClone)
         }
         localStorage.setItem("cartItems",JSON.stringify(cartItemsClone))

@@ -12,6 +12,7 @@ export const PRODUCT_DETAILES_FAIL = 'PRODUCT_DETAILES_FAIL'
 // ADD/Remove Product in cart Types
 export const CART_ADD_ITEM= 'CART_ADD_ITEM'
 export const CART_REMOVE_ITEM = 'CART_REMOVE_ITEM'
+export const CART_RESET_ITEMS = 'CART_RESET_ITEMS'
 
 //User Login/logout
 export const  USER_LOGIN_REQUEST ="USER_LOGIN_REQUEST" 
@@ -28,6 +29,7 @@ export const  USER_REGISTER_FAIL ="USER_REGISTER_FAIL"
 export const  USER_DETAILES_REQUEST ="USER_DETAILES_REQUEST" 
 export const  USER_DETAILES_SUCCESS ="USER_DETAILES_SUCCESS" 
 export const  USER_DETAILES_FAIL ="USER_DETAILES_FAIL" 
+export const  USER_DETAILES_RESET ="USER_DETAILES_RESET" 
 
 
 //Profile Update
@@ -44,13 +46,19 @@ export const  ORDER_CREATE_REQUEST ="ORDER_CREATE_REQUEST"
 export const  ORDER_CREATE_SUCCESS ="ORDER_CREATE_SUCCESS" 
 export const  ORDER_CREATE_FAIL ="ORDER_CREATE_FAIL" 
 
-//Create Order Actionss
+//Create Order Actions
 export const  ORDER_DETAILS_REQUEST ="ORDER_DETAILS_REQUEST" 
 export const  ORDER_DETAILS_SUCCESS ="ORDER_DETAILS_SUCCESS" 
 export const  ORDER_DETAILS_FAIL ="ORDER_DETAILS_FAIL" 
-// Order Pay Actionss
+// Order Pay Actions
 export const  ORDER_PAY_REQUEST ="ORDER_PAY_REQUEST" 
 export const  ORDER_PAY_SUCCESS ="ORDER_PAY_SUCCESS" 
 export const  ORDER_PAY_FAIL ="ORDER_PAY_FAIL" 
-export const  ORDER_PAY_RESET ="ORDER_PAY_RESET" 
+export const  ORDER_PAY_RESET = "ORDER_PAY_RESET" 
+
+//Get My Orders List Actions
+export const  My_ORDER_LIST_REQUEST ="My_ORDER_LIST_REQUEST" 
+export const  My_ORDER_LIST_SUCCESS ="My_ORDER_LIST_SUCCESS" 
+export const  My_ORDER_LIST_FAIL ="My_ORDER_LIST_FAIL" 
+export const  My_ORDER_LIST_RESET ="My_ORDER_LIST_RESET" 
 

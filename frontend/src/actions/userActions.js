@@ -11,7 +11,9 @@ import {
     USER_DETAILES_SUCCESS,
     USER_DETAILES_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
-    USER_UPDATE_PROFILE_SUCCESS
+    USER_UPDATE_PROFILE_SUCCESS,
+    My_ORDER_LIST_RESET,
+    USER_DETAILES_RESET
 } from "./types"
 
 export const login = (email, password) => async (dispatch) => {
@@ -45,8 +47,10 @@ export const login = (email, password) => async (dispatch) => {
 }
 export const logout = () =>  (dispatch) => {
 
-    dispatch({type: USER_LOGOUT})
     localStorage.removeItem('userInfo')
+    dispatch({type: USER_LOGOUT})
+    dispatch({type: USER_DETAILES_RESET})
+    dispatch({type: My_ORDER_LIST_RESET})
     
     }
 

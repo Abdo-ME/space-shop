@@ -16,7 +16,7 @@ const PlaceOrderScreen = () => {
   const { order, success, error } = orderCreate
   useEffect(() => {
   
-    if (success) navigate(`/order/${order._id}`)
+    if (success) navigate(`/orders/${order._id}`)
        // eslint-disable-next-line react-hooks/exhaustive-deps
   },[navigate,success])
   const placeOrderHandler = () => {
