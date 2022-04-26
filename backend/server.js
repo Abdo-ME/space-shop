@@ -19,10 +19,15 @@ app.get('/', (req, res) => {
     res.send("api is runnig")
 })
 
-app.use('/api/users', userRoutes)
-app.use('/api/orders', orderRoutes)
 //Products Routes
-app.use('/api/products/',productRoutes);
+app.use('/api/products/', productRoutes);
+
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/config/paypal', (req,res)=> res.send(process.env.PAYPAL_CLIENT_ID));
+
+
+
 
 //handle 404 error (not found Page)
 app.use(notFoundPage)

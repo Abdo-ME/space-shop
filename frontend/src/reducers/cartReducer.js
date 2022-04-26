@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM,CART_REMOVE_ITEM,CART_SAVE_PAYMENT_METHOD,CART_SAVE_SHIPPING_ADDRESS } from "../actions/types";
+import { CART_ADD_ITEM,CART_REMOVE_ITEM,CART_RESET_ITEMS,CART_SAVE_PAYMENT_METHOD,CART_SAVE_SHIPPING_ADDRESS } from "../actions/types";
 const initialState = {
     cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
     shippingAddress: JSON.parse(localStorage.getItem('shippingAddress')) || {},
@@ -13,6 +13,9 @@ export const cartItermReducer = (state = initialState, action) => {
         
         case CART_REMOVE_ITEM:
             return { ...state,cartItems: action.payload }
+        
+        case CART_RESET_ITEMS:
+            return { ...state,cartItems: [] }
         
         case CART_SAVE_SHIPPING_ADDRESS:
             return { ...state,shippingAddress: action.payload }

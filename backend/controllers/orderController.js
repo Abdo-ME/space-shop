@@ -57,9 +57,11 @@ const getOrderById = asyncHandler( async(req, res) => {
 //@access    Privete
 const updateOrderToPaid = asyncHandler( async(req, res) => {
     const order = await Order.findById(req.params.id)
+
     if (order) {
-        order.isPayd = true
-        order.paydAt = Date.now()
+        
+        order.isPaid = true
+        order.paidAt = Date.now()
         order.paymentResult = {
             id: req.body.id,
             status: req.body.status,
@@ -73,5 +75,14 @@ const updateOrderToPaid = asyncHandler( async(req, res) => {
         throw new Error('Order Not Found')
 }
 })
+ //@desc     get logged in user orders
+//@route    POST /api/orders/myorders
+//@access    Privete
+const getMyOrders = asyncHandler(async (req, res) => {
+    const orders = await Order.find({user:req.user._id})
+    res.json(orders)
 
-export { addOrderItems, getOrderById,updateOrderToPaid }
+ 
+})
+
+export { addOrderItems, getOrderById,updateOrderToPaid,getMyOrders }

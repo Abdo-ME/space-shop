@@ -11,7 +11,8 @@ import {
     USER_DETAILES_FAIL,
     USER_UPDATE_PROFILE_REQUEST,
     USER_UPDATE_PROFILE_SUCCESS,
-    USER_UPDATE_PROFILE_FAIL
+    USER_UPDATE_PROFILE_FAIL,
+    USER_DETAILES_RESET
 } from '../actions/types.js'
 
 const userInfo = localStorage.getItem('userInfo')
@@ -58,6 +59,8 @@ export const userDetailsReducer = (state = {}, action) => {
             return { loading: false, user: action.payload }
         case USER_DETAILES_FAIL:
             return { loading: false, error: action.payload }
+        case USER_DETAILES_RESET:
+            return { user:{}}
         default:
             return state
         
