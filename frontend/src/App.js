@@ -19,6 +19,8 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderDetailsScreen from './screens/OrderDetailsScreen';
+import UserListScreen from './screens/UserListScreen';
+import AdminProtecteRoutes from './components/AdminProtectRoutes';
 
 
 const App = () => {
@@ -37,7 +39,11 @@ const App = () => {
             <Route path='product/:id' element ={<ProductScreen/>}/>
             <Route path='cart' element={<CartScreen />}>
               <Route path=':id' element={<CartScreen />} />
-            </Route>
+              </Route>
+              {/* Admin Protected Routes */}
+              <Route element={<AdminProtecteRoutes userInfo={userInfo} />}>
+              <Route path='admin/userlist' element={<UserListScreen/>} />
+              </Route>
               {/* Protected Routes */}
             <Route element={<ProtectedRoutes userInfo={userInfo} />}>
                 <Route path='login' element={<LoginScreen />} />

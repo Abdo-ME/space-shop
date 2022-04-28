@@ -107,5 +107,30 @@ const updateUserProfile = asyncHandler( async(req, res) => {
     }
 })
 
+//@desc     Get All Users 
+//@route    Put /api/users
+//@access    Privet/isAdmin
+const getUsers = asyncHandler( async(req, res) => {
+    const users = await User.find({})
+    res.json(users)
+    
+})
 
-export {authUser,registerUser,getUserProfile,updateUserProfile}
+//@desc     Delet User
+//@route    delete /api/users/:id/delete
+//@access    Privet/isAdmin
+const deleteUser = asyncHandler( async(req, res) => {
+    const user= await User.findById(req.params.id)
+  
+    if (user) {
+        await user.remove()
+        res.json({message: 'User removed'})
+    } else {
+        res.status(404)
+        throw new Error('User not found')
+    }
+    
+})
+
+
+export {authUser,registerUser,getUserProfile,updateUserProfile,getUsers,deleteUser}
