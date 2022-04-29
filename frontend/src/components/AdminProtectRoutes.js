@@ -1,6 +1,5 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import HomeScreen from '../screens/HomeScreen'
 
 const AdminProtecteRoutes = ({userInfo}) => {
 
