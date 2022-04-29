@@ -21,6 +21,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderDetailsScreen from './screens/OrderDetailsScreen';
 import UserListScreen from './screens/UserListScreen';
 import AdminProtecteRoutes from './components/AdminProtectRoutes';
+import UserEditScreen from './screens/UserEditScreen';
 
 
 const App = () => {
@@ -43,6 +44,7 @@ const App = () => {
               {/* Admin Protected Routes */}
               <Route element={<AdminProtecteRoutes userInfo={userInfo} />}>
               <Route path='admin/userlist' element={<UserListScreen/>} />
+              <Route path='admin/users/:id/edit' element={<UserEditScreen/>} />
               </Route>
               {/* Protected Routes */}
             <Route element={<ProtectedRoutes userInfo={userInfo} />}>
