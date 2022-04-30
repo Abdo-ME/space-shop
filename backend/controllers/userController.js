@@ -117,7 +117,7 @@ const getUsers = asyncHandler( async(req, res) => {
 })
 
 //@desc     Delet User
-//@route    delete /api/users/:id/delete
+//@route    delete /api/users/:id/
 //@access    Privet/isAdmin
 const deleteUser = asyncHandler( async(req, res) => {
     const user= await User.findById(req.params.id)

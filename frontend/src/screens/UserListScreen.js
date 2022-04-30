@@ -17,7 +17,6 @@ const UserListScreen = () => {
     useEffect(() => {
         dispatch(listUsers())
     }, [dispatch,successDelete])
-    // console.log(loading);
     const deleteHandler = (id) => {
         if ((window.confirm('are you sure to delete user'))) {
             dispatch(deleteUser(id))
