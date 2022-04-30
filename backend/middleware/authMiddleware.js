@@ -29,7 +29,7 @@ const admin = (req, res, next) => {
         next()
     }else{
         res.status(401)
-        throw new Error('Not Auth')
+        throw new Error('Not Auth as Admin')
     }
 }
 export  {protect,admin}
