@@ -23,6 +23,7 @@ import UserListScreen from './screens/UserListScreen';
 import AdminProtecteRoutes from './components/AdminProtectRoutes';
 import UserEditScreen from './screens/UserEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
+import ProductEditScreen from './screens/ProductEditScreen';
 
 
 const App = () => {
@@ -45,8 +46,9 @@ const App = () => {
               {/* Admin Protected Routes */}
               <Route element={<AdminProtecteRoutes userInfo={userInfo} />}>
               <Route path='admin/userlist' element={<UserListScreen/>} />
-              <Route path='admin/productlist' element={<ProductListScreen/>} />
               <Route path='admin/users/:id/edit' element={<UserEditScreen/>} />
+              <Route path='admin/productlist' element={<ProductListScreen/>} />
+              <Route path='admin/product/:id/edit' element={<ProductEditScreen/>} />
               </Route>
               {/* Protected Routes */}
             <Route element={<ProtectedRoutes userInfo={userInfo} />}>

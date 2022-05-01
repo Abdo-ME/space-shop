@@ -19,7 +19,11 @@ import {
     USER_LIST_RESET,
     USER_DELETE_REQUEST,
     USER_DELETE_SUCCESS,
-    USER_DELETE_FAIL
+    USER_DELETE_FAIL,
+    USER_UPDATE_REQUEST,
+    USER_UPDATE_SUCCESS,
+    USER_UPDATE_FAIL,
+    USER_UPDATE_RESET
 } from '../actions/types.js'
 
 const userInfo = localStorage.getItem('userInfo')
@@ -57,7 +61,7 @@ export const userRegisterReducer = (state = {}, action) => {
     }
     
 }
-export const userDetailsReducer = (state = {user:[]}, action) => {
+export const userDetailsReducer = (state = {user:{}}, action) => {
     switch (action.type) {
        
         case  USER_DETAILES_REQUEST:
@@ -67,7 +71,7 @@ export const userDetailsReducer = (state = {user:[]}, action) => {
         case USER_DETAILES_FAIL:
             return { loading: false, error: action.payload }
         case USER_DETAILES_RESET:
-            return { user:[]}
+            return { user:{}}
         default:
             return state
         
@@ -116,6 +120,25 @@ export const userDeleteReducer = (state = { success: false}, action) => {
         
         default:
             return state
+    }
+    
+}
+
+
+export const userUpdateReducer = (state = {success:false,user:{}}, action) => {
+    switch (action.type) {
+       
+        case  USER_UPDATE_REQUEST:
+            return {loading: true }
+        case  USER_UPDATE_SUCCESS:
+            return {success:true, loading: false }
+        case USER_UPDATE_FAIL:
+            return { loading: false, error: action.payload }
+        case USER_UPDATE_RESET:
+            return { user:{}}
+        default:
+            return state
+        
     }
     
 }

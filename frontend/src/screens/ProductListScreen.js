@@ -3,28 +3,37 @@ import { useDispatch, useSelector } from "react-redux"
 import {Button, Table,Row,Col } from "react-bootstrap"
 import { LinkContainer } from "react-router-bootstrap"
 
-import {deleteProduct, listProducts} from '../actions/productActions'
+import {deleteProduct, listProducts,createProductAction} from '../actions/productActions'
 import Loader from '../components/Loader';
 import Message from '../components/Message';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { PRODUCT_CREATE_RESET } from '../actions/types'
 
 
 const ProductListScreen = () => {
-    const params =useParams()
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const productDelete = useSelector(state => state.productDelete)
     const {success:successDelete,error:deleteError} = productDelete
    
     const productList = useSelector(state => state.productList)
     const {products, error, loading} = productList
+    const createProduct = useSelector(state => state.createProduct)
+    const {product:createdProduct, error:errorCreate, loading: loadingCreate,success: successCreate} = createProduct
     useEffect(() => {
-        dispatch(listProducts())
-    }, [dispatch,successDelete])
-    // console.log(loading);
+        if (successCreate) {
+            navigate(`/admin/product/${createdProduct._id}/edit`)
+            dispatch({ type: PRODUCT_CREATE_RESET })
+        } else {
+            dispatch(listProducts())
+        }
+    }, [dispatch,createdProduct,navigate,successCreate,successDelete])
+   
+//   Create Product
     const createProductHandler = () => {
-        
+        dispatch(createProductAction())
     }
-
+//   Delete Product
     const deleteHandler = (id) => {
         if ((window.confirm('are you sure to delete this Product'))) {
             dispatch(deleteProduct(id))
@@ -45,6 +54,8 @@ return (
         </Row>      
          {successDelete&&<Message variant='success'>Product Deleted</Message>}
          {deleteError&&<Message variant='danger'>{deleteError} </Message>}
+         {loadingCreate&&<Loader/>}
+         {errorCreate&&<Message variant='danger'>{errorCreate} </Message>}
         
         {loading ? <Loader /> : error ? <Message variant='danger'>{error} </Message> : (
 
