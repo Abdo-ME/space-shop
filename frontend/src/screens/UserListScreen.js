@@ -14,6 +14,7 @@ const UserListScreen = () => {
     const {users, error, loading} = userList
     const userDelete = useSelector(state => state.userDelete)
     const {success:successDelete,error:deleteError} = userDelete
+    
     useEffect(() => {
         dispatch(listUsers())
     }, [dispatch,successDelete])

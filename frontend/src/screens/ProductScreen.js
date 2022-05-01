@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Col, Row,ListGroup,Image,Button,Form } from 'react-bootstrap'
 import Rating from "../components/Rating"
 import { useDispatch,useSelector } from "react-redux";
-import {productDetailes} from '../actions/productActions'
+import {listProductDetails} from '../actions/productActions'
 import {addToCartItem} from '../actions/cartActions'
 import Loader from '../components/Loader';
 import Message from '../components/Message';
@@ -19,7 +19,7 @@ const ProductScreen = () => {
   const productDetaile = useSelector(state => state.productDetailes)
   const { product, error, loading } = productDetaile;
   useEffect(() => {
-      dispatch(productDetailes(Id))
+      dispatch(listProductDetails(Id))
     },[dispatch,Id])
 
   
