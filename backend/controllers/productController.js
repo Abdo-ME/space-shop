@@ -65,7 +65,7 @@ const createProduct = asyncHandler(async (req, res) => {
         // image: req.body.imageUrl,
         // brand: req.body.brand,
         // category: req.body.category,
-        // countInSrock: req.body.countInSrock,
+        // countInStock: req.body.countInStock,
         // numReviews: req.body.numReviews,
         // description: req.body.description,
 
@@ -77,7 +77,7 @@ const createProduct = asyncHandler(async (req, res) => {
         image: "/images/sample.jpg",
         brand: 'Sample brand',
         category: 'sample category',
-        countInSrock: 0,
+        countInStock: 0,
         numReviews: 0,
         description: 'sample Description',
 
@@ -90,15 +90,17 @@ const createProduct = asyncHandler(async (req, res) => {
 //@route    put /api/products/:id
 //@access    Privet/ Admin
 const updateProduct = asyncHandler(async (req, res) => {
-    const { name, price, description, image, brand, category, countInSrock } = req.body
+    const { name, price, description, image, brand, category, countInStock } = req.body
     const product = await Product.findById(req.params.id)
+    console.log(category)
     if (product) {
         product.name = name || product.name
         product.price = price || product.price
         product.description = description || product.description
         product.image = image || product.image
         product.brand = brand || product.brand
-        product.countInSrock = countInSrock || product.countInSrock
+        product.category = category || product.category
+        product.countInStock = countInStock || product.countInStock
       
         const updatedProduct = await product.save()
         res.json(updatedProduct)
