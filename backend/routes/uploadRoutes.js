@@ -5,8 +5,10 @@ import multer from "multer";
 const router = express.Router()
 
 const storage = multer.diskStorage({
-    // function to select upload file 
+    // function to select upload file
     destination(req, file, cb) {
+    console.log('storage');
+
         cb(null,'uploads/')
     },
     // function to rename the file add the extention
@@ -15,11 +17,12 @@ const storage = multer.diskStorage({
     }
 })
 
-// function to check file type before upload
-function checkFileType (file, cb){
+
+// function to check file type is image type before upload
+function checkFileType(file, cb){
     const filetypes = /jpg|jpeg|png/
-    const extname = filetypes.test(path.extname(file.originalname).toLocaleLowerCase())
-    const mimetype = filetypes.test(file.mimtype)
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
+    const mimetype = filetypes.test(file.mimetype)
     if (extname && mimetype) {
         return cb(null, true)
     } else {
@@ -27,14 +30,16 @@ function checkFileType (file, cb){
     }
 }
 
+
 const upload = multer({
     storage,
-    fileFilter: function (re, file, cb) {
+    fileFilter: function (req, file, cb) {
         checkFileType(file,cb)
     }
 })
 
-router.post('/', upload.single('image'), (res, res) => {
+router.post('/', upload.single('image'),
+    (req, res) => {
     res.send(`/${req.file.path}`)
 })
 
