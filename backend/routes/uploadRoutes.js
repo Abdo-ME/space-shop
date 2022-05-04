@@ -7,8 +7,9 @@ const router = express.Router()
 const storage = multer.diskStorage({
     // function to select upload file
     destination(req, file, cb) {
-    console.log('storage');
-
+        //first parameter is the error(null) 
+        //second parameter is the respons 
+        
         cb(null,'uploads/')
     },
     // function to rename the file add the extention

@@ -32,7 +32,10 @@ const ProductEditScreen = () => {
     useEffect(() => {
         if (successUpdate) {
             dispatch({ type: PRODUCT_UPDATE_RESET })
+            dispatch(listProductDetails(productId))
+
             navigate('/admin/productlist')
+
         } else{
             if (!product.name || product?._id !== productId) {
             
@@ -62,8 +65,8 @@ const submitHandler = (e) => {
             image,
             brand,
             description,
-        countInStock,
-        category
+            countInStock,
+            category
         }))
     }
     const uploadFileHandler = async (e) => {
