@@ -39,18 +39,20 @@ const App = () => {
           <Container>
       <Routes>
         <Route path='/'>
-            <Route index element ={<HomeScreen/>}/>
-            <Route path='product/:id' element ={<ProductScreen/>}/>
-            <Route path='cart' element={<CartScreen />}>
-              <Route path=':id' element={<CartScreen />} />
+            <Route index element={<HomeScreen />} />
+              <Route path='search/:keyword/:filter' element={<HomeScreen />} />
+              
+              <Route path='product/:id' element ={<ProductScreen/>}/>
+              <Route path='cart' element={<CartScreen />}>
+                <Route path=':id' element={<CartScreen />} />
               </Route>
               {/* Admin Protected Routes */}
               <Route element={<AdminProtecteRoutes userInfo={userInfo} />}>
-              <Route path='admin/userlist' element={<UserListScreen/>} />
-              <Route path='admin/users/:id/edit' element={<UserEditScreen/>} />
-              <Route path='admin/productlist' element={<ProductListScreen/>} />
-              <Route path='admin/product/:id/edit' element={<ProductEditScreen/>} />
-              <Route path='admin/orderlist' element={<OrderListScreen/>} />
+                <Route path='admin/userlist' element={<UserListScreen/>} />
+                <Route path='admin/users/:id/edit' element={<UserEditScreen/>} />
+                <Route path='admin/productlist' element={<ProductListScreen/>} />
+                <Route path='admin/product/:id/edit' element={<ProductEditScreen/>} />
+                <Route path='admin/orderlist' element={<OrderListScreen/>} />
               </Route>
               {/* Protected Routes */}
             <Route element={<ProtectedRoutes userInfo={userInfo} />}>
