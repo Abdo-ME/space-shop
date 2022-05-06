@@ -4,6 +4,7 @@ import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../actions/userActions'
 import { useNavigate } from 'react-router-dom'
+import SearchBox from './SearchBox'
 
 
 const Header = () => {
@@ -19,12 +20,13 @@ const Header = () => {
   return (
       <header >
         <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect >
-        <Container>
-          <LinkContainer to ="/">
-            <Navbar.Brand >Space Shop</Navbar.Brand>
-          </LinkContainer>
+          <Container>
+            <LinkContainer to ="/">
+              <Navbar.Brand >Space Shop</Navbar.Brand>
+            </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
+          <SearchBox />
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
                 <Nav.Link ><i className="fas fa-shopping-cart pr-1"></i> Cart</Nav.Link>
@@ -57,8 +59,8 @@ const Header = () => {
               )}
                 </Nav>
             </Navbar.Collapse>
-            </Container>
-            </Navbar>
+          </Container>
+        </Navbar>
     </header>
   )
 }
