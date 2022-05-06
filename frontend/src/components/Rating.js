@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Rating = ({ value, text, color }) => {
-    
+    // console.log( value, text)
     const renderRating = (value) => {
 
         //---------First Method-------//
