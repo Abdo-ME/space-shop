@@ -9,7 +9,7 @@ const SearchBox = () => {
         e.preventDefault()
         if (keyword.trim()) {
             navigate(`/search/${keyword}/${filter}`)
-            // setKeyword('')
+            setKeyword('')
            
         } else {
             navigate('/')
@@ -23,7 +23,7 @@ const SearchBox = () => {
                 onChange={ (e)=>setKeyword(e.target.value)}
                 placeholder='Search Products...'
                 className='mr-sm-2 ml-sm-2 '
-             
+                value={keyword}
             ></Form.Control>
              <Form.Check
                 inline
@@ -33,7 +33,8 @@ const SearchBox = () => {
                 id='name'
                 value="name"
                 style={{color:'white'}}
-                onChange={ (e)=>setFilter(e.target.value)}
+                onChange={(e) => setFilter(e.target.value)}
+                checked
             />
              <Form.Check
                 inline
