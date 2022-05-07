@@ -8,26 +8,30 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useNavigate, useParams } from 'react-router-dom'
 import { PRODUCT_CREATE_RESET } from '../actions/types'
+import Paginate from '../components/Paginate'
 
 
 const ProductListScreen = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
+    const pageNumber =useParams().pageNumber || 1
     const productDelete = useSelector(state => state.productDelete)
     const {success:successDelete,error:deleteError} = productDelete
    
     const productList = useSelector(state => state.productList)
-    const {products, error, loading} = productList
+    const {products, error, loading,pages,page} = productList
     const createProduct = useSelector(state => state.createProduct)
     const {product:createdProduct, error:errorCreate, loading: loadingCreate,success: successCreate} = createProduct
+    const userLogin = useSelector(state=>state.userLogin)
+    const {userInfo } = userLogin
     useEffect(() => {
         if (successCreate) {
             navigate(`/admin/product/${createdProduct._id}/edit`)
             dispatch({ type: PRODUCT_CREATE_RESET })
         } else {
-            dispatch(listProducts())
+            dispatch(listProducts('','',pageNumber))
         }
-    }, [dispatch,createdProduct,navigate,successCreate,successDelete])
+    }, [pageNumber,dispatch,createdProduct,navigate,successCreate,successDelete])
    
 //   Create Product
     const createProductHandler = () => {
@@ -58,45 +62,47 @@ return (
          {errorCreate&&<Message variant='danger'>{errorCreate} </Message>}
         
         {loading ? <Loader /> : error ? <Message variant='danger'>{error} </Message> : (
-
-            <Table striped bordered hover responsive className='table-sm'>
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>CATEGORY</th>
-                    <th>BRAND</th>
-                        <th></th>
-                        </tr>
-                </thead>
-                    <tbody>
-                        {products.map(product => (
-                            <tr key={product._id}>
-                                <td>{product._id} </td>
-                                <td>{product.name} </td>
-                                <td>${product.price} </td>
-                                <td>
-                                {product.category}
-                                </td>
-                                <td>{product.brand}</td>
-                                
-                                <td>
-                                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                                        <Button variant='light' className='btn-sm'>
-                                            <i className='fas fa-edit'></i>
-                                        </Button>
-                                    </LinkContainer>
-                                    <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
-                                        <i className='fas fa-trash'></i>
-                                    </Button>
-                                </td>
+            <>
+                <Table striped bordered hover responsive className='table-sm'>
+                    <thead>
+                        <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>CATEGORY</th>
+                        <th>BRAND</th>
+                            <th></th>
                             </tr>
-                        ))}
-                    </tbody>
-                
-            </Table>
-        ) }
+                    </thead>
+                        <tbody>
+                            {products.map(product => (
+                                <tr key={product._id}>
+                                    <td>{product._id} </td>
+                                    <td>{product.name} </td>
+                                    <td>${product.price} </td>
+                                    <td>
+                                    {product.category}
+                                    </td>
+                                    <td>{product.brand}</td>
+                                    
+                                    <td>
+                                        <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                                            <Button variant='light' className='btn-sm'>
+                                                <i className='fas fa-edit'></i>
+                                            </Button>
+                                        </LinkContainer>
+                                        <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
+                                            <i className='fas fa-trash'></i>
+                                        </Button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    
+                </Table>
+                <Paginate pages={pages} page={page} isAdmin={userInfo?.isAdmin} />
+            </>
+        )}
     </>
 )
 }

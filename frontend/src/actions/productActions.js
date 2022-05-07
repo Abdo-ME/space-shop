@@ -7,13 +7,10 @@ import {
     PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS, PRODUCT_UPDATE_FAIL,
     PRODUCT_CREATE_REVIEW_REQUEST, PRODUCT_CREATE_REVIEW_SUCCESS, PRODUCT_CREATE_REVIEW_FAIL
 } from './types'
-export const listProducts = (keyword ='',filter='name') => async (dispatch) => {
+export const listProducts = (keyword ='',filter='name',pageNumber='') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
-        const data = await axios.get(`/api/products?keyword=${keyword}`,
-            {
-                params: {filter}
-            }
+        const {data} = await axios.get(`/api/products?keyword=${keyword}&filter=${filter}&pageNumber=${pageNumber}`
         )
         dispatch({
             type: PRODUCT_LIST_SUCCESS,

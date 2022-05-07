@@ -6,9 +6,10 @@ import Product from "../models/productModel.js"
 //@route    GET /api/Products
 //@access    Public
 const getProducts = asyncHandler(async (req, res) => {
+    const pageSize = 2
+    const page = Number(req.query.pageNumber) || 1
+    
     const searchFilter = req.query.filter
-    console.log(searchFilter)
-
     const keyword = req.query.keyword ? {
         [searchFilter]: {
             $regex: req.query.keyword,
@@ -16,10 +17,15 @@ const getProducts = asyncHandler(async (req, res) => {
         }
     } : {}
     
-    
-    const products = await Product.find({...keyword})
-
-    res.json(products) 
+    //------ Pagination-------//
+    //get the count number of items you will show
+    const count = await Product.countDocuments({...keyword})
+    //limit => show how many items will show in one page
+    // skip=> to kow from how items you skip to start counting for the current page
+    const products = await Product.find({ ...keyword }).
+        limit(pageSize).skip(pageSize*(page -1))
+    // Math.ceil(count/pageSize) => to get the number of pages
+    res.json({products,page,pages: Math.ceil(count/pageSize)}) 
   
 })
 
