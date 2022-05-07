@@ -38,7 +38,7 @@ return (
                                 )
                             })}
                         </Row>
-                        <Paginate pages={pages} page={page} isAdmin={userInfo?.isAdmin} keyword={keyword?keyword:''} filter={filter?filter:''}/>
+                        <Paginate pages={pages} page={page} keyword={keyword?keyword:''} filter={filter?filter:''}/>
                     </>
                 )
         }
