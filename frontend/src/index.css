@@ -22,3 +22,52 @@ h2{
   font-size: 20px;
   font-weight: 700;
 }
+/* Carousel */
+.carousel{
+  height: 500px;
+}
+.carousel-item{
+  height: 100%;
+}
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item-active{
+  display: flex;
+}
+.carousel-caption{
+  position: absolute;
+  top: 0;
+}
+.carousel-caption h2{
+  color: white;
+}
+/* .carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.carousel img{
+  height: 460px;
+  padding: 30px;
+  margin: 40px ;
+  width: 80%;
+  /* border-radius: 50%; */
+}
+.carousel a {
+  display: flex;
+  justify-content: center;
+}
+.category{
+  display: inline-block;
+  width: fit-content;
+  height: 10px;
+  font-weight: 800;
+  border-radius: 5%;
+  padding: 5px;
+  height: 25px;
+  margin: 5px 0;
+  background-color: rgb(190, 189, 188);
+}
+main img{
+  min-height: 190px;
+}
