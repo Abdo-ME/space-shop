@@ -23,14 +23,12 @@ const UserEditScreen = () => {
     const {success:succsessUpdate,loading:loadingUpdate, error:errorUpdate} = userUpdate
    
     
-
+    
     useEffect(() => {
         if (succsessUpdate) {
-                
             dispatch({type: USER_UPDATE_RESET})
             navigate('/admin/userlist')
         } else {
-            
             if (!user.name || user._id !== userId) {
                 dispatch(getUserDetails(userId))
             }
@@ -99,5 +97,7 @@ const UserEditScreen = () => {
 }
 
 export default UserEditScreen
+
+
 
 

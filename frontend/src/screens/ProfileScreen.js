@@ -8,6 +8,8 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import {getUserDetails,updateUserProfile} from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
+import { USER_UPDATE_PROFILE_RESET } from '../actions/types'
+
 
 
 const ProfileScreen = () => {
@@ -31,7 +33,9 @@ const ProfileScreen = () => {
     if (!userInfo) {
       navigate('/login')
     } else {
-      if (!user.name) {
+      if (!user || !user.name|| success ) {
+        dispatch({type: USER_UPDATE_PROFILE_RESET})
+
         dispatch(getUserDetails('profile'))
         dispatch(listMyOrders())
 
@@ -40,14 +44,14 @@ const ProfileScreen = () => {
         setEmail(user.email)
       }
     }
-  }, [user,userInfo,navigate,dispatch])
+  }, [user,userInfo,navigate,dispatch,success])
   
   const handleSubmit = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       setMessage('Passwords do not match')
     } else {
-      //dispatch update 
+      //dispatch update
       dispatch(updateUserProfile({id:user._id,name,email,password}))
     }
     
@@ -61,7 +65,7 @@ const ProfileScreen = () => {
         {message && <Message variant="danger" >{message} </Message>}
         {error && <Message variant="danger" >{error} </Message>}
         {success && <Message variant="success" >Your Update is Done </Message>}
-        {loading && <Loader />} 
+        {loading && <Loader />}
         <Form onSubmit={handleSubmit}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>
@@ -143,4 +147,5 @@ const ProfileScreen = () => {
 }
 
 export default ProfileScreen
+
 
