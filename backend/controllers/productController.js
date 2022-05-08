@@ -6,7 +6,7 @@ import Product from "../models/productModel.js"
 //@route    GET /api/Products
 //@access    Public
 const getProducts = asyncHandler(async (req, res) => {
-    const pageSize = 2
+    const pageSize = 5
     const page = Number(req.query.pageNumber) || 1
     
     const searchFilter = req.query.filter
@@ -161,4 +161,20 @@ const createProductReview = asyncHandler(async (req, res) => {
     }
 
 });
-export {getProductById,getProducts,updateProduct,createProduct,deleteProduct,createProductReview}
+//@desc     Get Top rated Product
+//@route    Get /api/products/top
+//@access    Public
+
+const getTopRatedProducts = asyncHandler(async (req, res) => {
+    const products = await Product.find({}).sort({rating: -1}).limit(3)
+    if (products) {
+        res.json(products)
+   
+   
+    } else {
+        res.status(404)
+        throw new Error('Product not found')
+    }
+
+});
+export {getProductById,getProducts,updateProduct,createProduct,deleteProduct,createProductReview,getTopRatedProducts}

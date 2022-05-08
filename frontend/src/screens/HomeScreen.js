@@ -7,6 +7,7 @@ import { useDispatch,useSelector } from "react-redux";
 import {listProducts} from '../actions/productActions'
 import { useParams } from 'react-router-dom'
 import Paginate from '../components/Paginate'
+import ProductCarousel from '../components/ProductCarousel'
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
@@ -16,8 +17,6 @@ const HomeScreen = () => {
     const pageNumber= useParams().pageNumber || 1
     const productList = useSelector(state => state.productList)
     const { products, loading, error,page,pages } = productList;
-    const userLogin = useSelector(state=>state.userLogin)
-    const {userInfo } = userLogin
     useEffect(() => {
         dispatch(listProducts(keyword,filter,pageNumber))
     },[dispatch,keyword,filter,pageNumber])
@@ -29,6 +28,7 @@ return (
             : error ? <Message variant='danger' >{error}</Message>
                 : (
                     <>
+                        {!keyword && <ProductCarousel />}
                         <Row>
                             {products.map(product => {
                                 return (
