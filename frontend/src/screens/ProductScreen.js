@@ -9,6 +9,7 @@ import {addToCartItem} from '../actions/cartActions'
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../actions/types';
+import Meta from '../components/Meta';
 
 
 const ProductScreen = () => {
@@ -56,6 +57,7 @@ const ProductScreen = () => {
           : error ? <Message variant='danger' >{error}</Message> :
             (
               <>
+                <Meta title={product.name}/>
                 <Row>
                   <Col lg={6} md={12} sm={12} className="mb-5" >
                     <Image src={product.image} alt={product.name} fluid/>
